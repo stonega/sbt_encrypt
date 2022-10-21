@@ -1,12 +1,13 @@
-# Aes Dart
+# SBT Encrypt
 
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
+Encrypt with argon2 + chacha20.
 ## Usage
 ```dart
-final encprypted = await aesEncrypt('test', 'password')
-final decrypted = await aesDecrypt(encrypted, 'password')
+final encprypted = await encrypt('test', 'password')
+final decrypted = await decrypt(encrypted, 'password')
 ```
 
 [dart_install_link]: https://dart.dev/get-dart

@@ -6,6 +6,6 @@
 // https://opensource.org/licenses/MIT.
 
 /// Aes dart
-library aes_dart;
+library sbt_encrypt;
 
-export 'src/aes_dart.dart';
+export 'src/sbt_encrypt.dart';
