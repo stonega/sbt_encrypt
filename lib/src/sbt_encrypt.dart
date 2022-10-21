@@ -10,6 +10,7 @@ import 'dart:typed_data';
 import 'package:argon2/argon2.dart';
 import 'package:cryptography/cryptography.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:sbt_encrypt/src/chacha20.dart';
 
 /// Password derive
 Future<List<int>> argon(String password, Uint8List salt) async {
@@ -31,7 +32,7 @@ Future<String> encrypt(String plainText, String password) async {
   // final iv = IV.fromSecureRandom(16);
   final salt = IV.fromSecureRandom(12).bytes;
   final key = await argon(password, salt);
-  final algorithm = Chacha20(macAlgorithm: Hmac.sha256());
+  final algorithm = SbtChacha20(macAlgorithm: Hmac.sha256());
   final secretBox = await algorithm.encrypt(
     ascii.encode(plainText),
     secretKey: SecretKey(key.sublist(0, 32)),
@@ -47,7 +48,7 @@ Future<String> decrypt(String input, String password) async {
   final data = unpackaged.sublist(12);
   final secretBox = SecretBox(data, nonce: salt, mac: Mac([]));
   final key = await argon(password, salt);
-  final algorithm = Chacha20(macAlgorithm: Hmac.sha256());
+  final algorithm = SbtChacha20(macAlgorithm: Hmac.sha256());
   final encrypted = await algorithm.decrypt(
     secretBox,
     secretKey: SecretKey(key.sublist(0, 32)),

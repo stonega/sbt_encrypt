@@ -1,6 +1,6 @@
 name: sbt_encrypt
 description: SBT encryt
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/stonega/sbt_encrypt
 
 environment:
