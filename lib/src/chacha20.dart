@@ -36,12 +36,11 @@ class SbtChacha20 extends Chacha20 {
   }) : super.constructor();
 
   @override
-  Future<List<int>> decrypt(
-    SecretBox secretBox, {
-    required SecretKey secretKey,
-    List<int> aad = const <int>[],
-    int keyStreamIndex = 0,
-  }) async {
+  Future<List<int>> decrypt(SecretBox secretBox,
+      {required SecretKey secretKey,
+      List<int> aad = const <int>[],
+      int keyStreamIndex = 0,
+      Uint8List? possibleBuffer}) async {
     if (keyStreamIndex < 0) {
       throw ArgumentError.value(
         keyStreamIndex,
@@ -93,13 +92,12 @@ class SbtChacha20 extends Chacha20 {
   }
 
   @override
-  Future<SecretBox> encrypt(
-    List<int> clearText, {
-    required SecretKey secretKey,
-    List<int>? nonce,
-    List<int> aad = const <int>[],
-    int keyStreamIndex = 0,
-  }) async {
+  Future<SecretBox> encrypt(List<int> clearText,
+      {required SecretKey secretKey,
+      List<int>? nonce,
+      List<int> aad = const <int>[],
+      int keyStreamIndex = 0,
+      Uint8List? possibleBuffer,}) async {
     if (keyStreamIndex < 0) {
       throw ArgumentError.value(
         keyStreamIndex,
